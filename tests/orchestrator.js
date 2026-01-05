@@ -9,10 +9,12 @@ async function waitForAllServices() {
       maxTimeout: 1000,
     });
 
-    async function fetchStatusPage(bail, tryNum) {
-      console.log(`Try number ${tryNum}`);
+    async function fetchStatusPage() {
       const response = await fetch("http://localhost:3000/api/v1/status");
-      const responseBody = await response.json();
+
+      if (response.status !== 200) {
+        throw Error();
+      }
     }
   }
 }
